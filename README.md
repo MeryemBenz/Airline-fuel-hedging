@@ -1,6 +1,6 @@
 # Airline Fuel Cross-Hedging & Derivatives Backtest
 
-Airlines consume jet fuel continuously, yet long-dated jet kerosene derivatives are relatively illiquid and carry wide bid-ask spreads. In practice, airline fuel desks cross-hedge using liquid proxy contracts—typically WTI crude or ULSD heating oil futures—and structured options. 
+Airlines consume jet fuel continuously, yet long-dated jet kerosene derivatives are relatively illiquid and carry wide bid-ask spreads. In practice, airline fuel desks cross-hedge using liquid proxy contracts,typically WTI crude or ULSD heating oil futures,and structured options. 
 
 This repository models the two core problems of an airline hedging program:
 1. **Cross-hedging basis risk:** Jet fuel prices track crude/distillates over time, but refinery bottlenecks cause the jet crack spread to diverge unpredictably.
@@ -35,7 +35,7 @@ The backtest assumes a constant monthly consumption of **10 million gallons**, r
 
 | Strategy | Mean Bill ($M) | Shock Std ($M) | Variance Reduction | 95% VaR Shock ($M) | 95% CVaR Shock ($M) | Worst Spike ($M) | Best Savings ($M) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Unhedged** | 24.53 | 2.11 | — | 3.42 | 4.06 | 4.84 | -4.87 |
+| **Unhedged** | 24.53 | 2.11 | , | 3.42 | 4.06 | 4.84 | -4.87 |
 | **Naive 1:1 Futures** | 24.28 | 0.55 | 93.2% | 0.99 | 1.13 | 1.30 | -1.03 |
 | **Dynamic MVHR** | 24.33 | 0.44 | 95.7% | 0.60 | 0.85 | 1.27 | -0.89 |
 | **Zero-Cost Collar** | 24.39 | 0.65 | 90.6% | 0.96 | 1.19 | 1.38 | -1.58 |
@@ -44,11 +44,8 @@ The backtest assumes a constant monthly consumption of **10 million gallons**, r
 * **Naive 1:1 over-hedges basis risk:** Because the structural pass-through between proxy futures and jet fuel is below 1.0 ($\hat{\beta}_{\text{OLS}} \approx 0.75$), hedging 100% of physical volume introduces unnecessary tracking error. Dynamic EWMA sizing reduces monthly budget shock volatility by **95.7%** and cuts 95% CVaR tail spikes from **$4.06M to $0.85M**.
 * **Linear swaps vs. collars:** Dynamic MVHR achieves the lowest overall variance, while the Zero-Cost Collar caps extreme upward spikes at **$1.38M** (vs. $4.84M unhedged) while retaining nearly double the downside savings (**-$1.58M** vs. -$0.89M) during sharp sell-offs.
 
-![Hedging Dashboard](airline_fuel_hedging_dashboard.png)
 
 ---
-
-## Usage
 
 ### Requirements
 * Python 3.9+
